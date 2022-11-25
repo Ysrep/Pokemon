@@ -13,6 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{81824953-ab8e-4c0d-b6c7-c8b5bbd23c2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures\Map">
+      <UniqueIdentifier>{0a743554-c952-48c6-afd7-512c19dfbcb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures\Entity">
+      <UniqueIdentifier>{b6340ccd-a519-4e6d-ad76-aa4157b7fbd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
