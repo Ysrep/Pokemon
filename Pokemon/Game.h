@@ -19,5 +19,8 @@ public:
     void display(void);
 
     //
-    void drawEntity(const Entity&);
+    void drawBackground();
+    void drawTitle();
+    void drawPokeball();
+    void drawEnterText();
 };

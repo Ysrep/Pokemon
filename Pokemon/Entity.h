@@ -4,6 +4,7 @@
 class Entity
 {
 protected:
+
     sf::Sprite _sprite;
     const sf::Texture& _texture;
 

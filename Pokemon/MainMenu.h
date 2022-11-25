@@ -1,10 +1,11 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 
 class MainMenu
 {
 public:
 
-	sf::Sprite ;
+	MainMenu(const sf::Texture& texture);
 
 private:
 
