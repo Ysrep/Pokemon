@@ -140,7 +140,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Groudon.cpp" />
     <ClCompile Include="Main.cpp" />
-<<<<<<< HEAD
     <ClCompile Include="MainMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,12 +149,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Groudon.h" />
     <ClInclude Include="MainMenu.h" />
-=======
-    <ClCompile Include="mainCharacter.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="mainCharacter.h" />
->>>>>>> 10f93526d42f58382ee07724ae041038f4ef16f2
     <ClInclude Include="Pokemon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
