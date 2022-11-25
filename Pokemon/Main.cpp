@@ -1,35 +1,32 @@
-#include <iostream>
-#include <string>
-#include <SFML/Graphics.hpp>
+#include "Game.h"
+#include "Groudon.h"
+#include "Config.h"
 
-using namespace std;
-
-int main()
+int main(void)
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
-    sf::Texture texture;
-    sf::Sprite Chochodile;
-    Chochodile.scale(sf::Vector2f(0.7, 0.7));
+    Game g;
 
-    while (window.isOpen())
+    sf::Texture texture;
+    if (!texture.loadFromFile(GROUDON_TEXTURE_PATH))
     {
-        sf::Event event;
-        while (window.pollEvent(event))
+        // error...
+    }
+
+    Groudon groudon = Groudon(texture);
+
+    int count = 0;
+    while (g.isOpen())
+    {
+        g.clear();
+        g.handleEvents();
+        if (count % 20 == 0)
         {
-            if (event.type == sf::Event::Closed)
-                window.close();
+            groudon.nextAnimation();
+            count = 0;
         }
-        if (!texture.loadFromFile("Texture/chochodile.png"))
-        {
-            // erreur...
-            return -1;
-        }
-        Chochodile.setTexture(texture);
-        Chochodile.setPosition(sf::Vector2f(400, 400));
-        Chochodile.rotate(10);
-        window.clear();
-        window.draw(Chochodile);
-        window.display();
+        count++;
+        g.drawEntity(groudon);
+        g.display();
     }
 
     return 0;
