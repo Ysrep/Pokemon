@@ -140,7 +140,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Groudon.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="MainMenu.cpp" />
     <ClCompile Include="mainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />
   </ItemGroup>
@@ -150,7 +149,6 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Groudon.h" />
-    <ClInclude Include="MainMenu.h" />
     <ClInclude Include="mainCharacter.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Pokemon.h" />
