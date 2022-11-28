@@ -5,12 +5,14 @@
 #include <SFML/Graphics.hpp>
 
 #include "mainCharacter.h"
+#include "Map.h"
 
 using namespace std;
 
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    mainCharacter mainCharMap(&window);
     
     while (window.isOpen())
     {
@@ -21,7 +23,7 @@ int main()
                 window.close();
         }
         window.clear();
-        window.draw(mainCharSprite);
+        mainCharMap.InitChar();
         window.display();
     }
 
