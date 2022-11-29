@@ -13,25 +13,25 @@ int main() { // MAIN ULYSS
 	int count = 0;
 	int e = 0;
 
-	//sf::SoundBuffer whodapokemon;
+	sf::SoundBuffer whodapokemon;
 
-	//if (!whodapokemon.loadFromFile("Audio/whodapokemon.wav"))
-	//{
-	//	std::cout << "Error" << std::endl;
-	//}
-	//sf::Sound whodispokemon;
-	//whodispokemon.setBuffer(whodapokemon);
-	//whodispokemon.setVolume(90);
+	if (!whodapokemon.loadFromFile("Audio/whodapokemon.wav"))
+	{
+		std::cout << "Error" << std::endl;
+	}
+	sf::Sound whodispokemon;
+	whodispokemon.setBuffer(whodapokemon);
+	whodispokemon.setVolume(90);
 
-	//sf::SoundBuffer backgroundMusic;
+	sf::SoundBuffer backgroundMusic;
 
-	/*if (!backgroundMusic.loadFromFile("Audio/Mouettes.wav"))
+	if (!backgroundMusic.loadFromFile("Audio/Mouettes.wav"))
 	{
 		std::cout << "Error" << std::endl;
 	}
 	sf::Sound Mouettes;
 	Mouettes.setBuffer(backgroundMusic);
-	Mouettes.setVolume(90);*/
+	Mouettes.setVolume(90);
 
 	while (g.isOpen())
 	{
@@ -41,8 +41,8 @@ int main() { // MAIN ULYSS
 		case 0:
 			g.clear();
 			g.handleEvents();
-			//whodispokemon.play();
-			//Mouettes.play();
+			whodispokemon.play();
+			Mouettes.play();
 			g.drawBackground();
 			g.drawPokeball();
 			g.drawTitle();
