@@ -5,9 +5,9 @@
 Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
 {
     this->movingWingull;
-    this->movingWingull.setPosition(sf::Vector2f(650.f, 50.f)); // absolute position
+    this->movingWingull.setPosition(sf::Vector2f(650.f, 20.f)); // absolute position
     this->movingWingull2;
-    this->movingWingull2.setPosition(sf::Vector2f(950.f, 15.f)); // absolute position
+    this->movingWingull2.setPosition(sf::Vector2f(950.f, 420.f)); // absolute position
 
     this->_window.setVerticalSyncEnabled(true);
     this->_window.setFramerateLimit(60);
@@ -300,7 +300,7 @@ void Game::goeliseTravel2() {
     }
     if (this->GoeliseTravel == false)
     {
-        this->movingWingull2.setPosition(sf::Vector2f(1000.f, 250.f));
+        this->movingWingull2.setPosition(sf::Vector2f(1000.f, 420.f));
         this->GoeliseTravel = true;
     }
 }
