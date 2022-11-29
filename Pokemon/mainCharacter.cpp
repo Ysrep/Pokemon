@@ -23,7 +23,7 @@ mainCharacter::mainCharacter(sf::RenderWindow* window) {
     int charPosX = 0;
     int charPosY = 0;
     this->mainCharSprite;
-    this->mainCharSprite.setPosition(sf::Vector2f(64 / 2, 64 / 2));
+    this->mainCharSprite.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
 }
 
 void mainCharacter::InitChar() {
@@ -43,7 +43,6 @@ void mainCharacter::InitChar() {
 
     while (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 
-        this->window->clear();
         if (count % 1250 == 0) {
 
             anim_count++;
@@ -70,7 +69,6 @@ void mainCharacter::InitChar() {
 
     while (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 
-        this->window->clear();
         if (count % 2500 == 0) {
 
             anim_count++;
@@ -97,7 +95,6 @@ void mainCharacter::InitChar() {
 
     while (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 
-        this->window->clear();
         if (count % 2500 == 0) {
 
             anim_count++;
@@ -123,9 +120,8 @@ void mainCharacter::InitChar() {
 
     while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
-        this->window->clear();
+        
         if (count % 2500 == 0) {
-
             anim_count++;
             mainCharSprite.setPosition(mainCharSprite.getPosition().x, mainCharSprite.getPosition().y - 8);
             while (charPosY % 64 != 0) {

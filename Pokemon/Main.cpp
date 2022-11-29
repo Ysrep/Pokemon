@@ -1,5 +1,4 @@
 #include "Game.h"
-#include "Groudon.h"
 #include "Config.h"
 #include "SFML/Audio.hpp"
 
@@ -57,8 +56,9 @@ using namespace std;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 800), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(640, 640), "SFML works!");
     mainCharacter mainCharMap(&window);
+    Map mapTile(&window);
     
     while (window.isOpen())
     {
@@ -69,6 +69,7 @@ int main()
                 window.close();
         }
         window.clear();
+        mapTile.MappingTile();
         mainCharMap.InitChar();
         window.display();
     }
