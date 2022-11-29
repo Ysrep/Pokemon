@@ -4,9 +4,15 @@
 
 Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
 {
+    this->movingWingull;
+    this->movingWingull.setPosition(sf::Vector2f(650.f, 50.f)); // absolute position
+    this->movingWingull2;
+    this->movingWingull2.setPosition(sf::Vector2f(950.f, 15.f)); // absolute position
+
+    this->_window.setVerticalSyncEnabled(true);
     this->_window.setFramerateLimit(60);
     opacity = 0;
-
+    this->GoeliseTravel = true;
 }
 
 bool Game::isOpen(void) const
@@ -24,7 +30,7 @@ void Game::handleEvents(void)
     }
     switch (event.type)
     {
-    case sf::Event::MouseButtonPressed:
+    case sf::Event::MouseButtonPressed:  
         std::cout << "Button " << event.mouseButton.button << " @ "
             << sf::Mouse::getPosition(_window).x << ", "
             << sf::Mouse::getPosition(_window).y << "\n";
@@ -33,16 +39,9 @@ void Game::handleEvents(void)
     default:
         break;
     }
-
 }
 
 void Game::update() {
-    bool Hover = false;
-
-    if (Hover = true)
-    {
-    }
-
 }
 
 void Game::clear(void)
@@ -55,7 +54,8 @@ void Game::display(void)
     this->_window.display();
 }
 
-//MAIN MENU - Displaying the Images
+//Display - Background
+
 void Game::drawBackground()
 {
     sf::Texture arena;
@@ -71,6 +71,8 @@ void Game::drawBackground()
 
     this->_window.draw(background);
 }
+
+//Display - Title Image
 
 void Game::drawTitle()
 {
@@ -88,6 +90,8 @@ void Game::drawTitle()
 
     this->_window.draw(titleText);
 }
+
+//Display - Pokeball
 
 void Game::drawPokeball() {
 
@@ -108,6 +112,8 @@ void Game::drawPokeball() {
 
 }
 
+//Display - Press Enter
+
 void Game::drawEnterText() {
 
     if (opacity >= 255)
@@ -125,7 +131,7 @@ void Game::drawEnterText() {
     MainmenuText.setCharacterSize(50);
     MainmenuText.setFillColor(sf::Color(0,0,0,opacity));
     MainmenuText.setOrigin((double)MainmenuText.getLocalBounds().width / 2, (double)MainmenuText.getLocalBounds().height / 2);
-    MainmenuText.setPosition(sf::Vector2f(530.f, 500.f));// absolute position
+    MainmenuText.setPosition(sf::Vector2f(530.f, 400.f));// absolute position
 
    clock.restart();
 
@@ -134,7 +140,7 @@ void Game::drawEnterText() {
     this->_window.draw(MainmenuText);
 }
 
-//2nd MAINMENU - Display
+//Display - Play Button
 
 void Game::displayPlayButton() {
 
@@ -151,16 +157,24 @@ void Game::displayPlayButton() {
     Play.setFont(font);
     Play.setString("PLAY");
     Play.setCharacterSize(50);
-    Play.setFillColor(sf::Color(255, 255, 255, opacity));
+    Play.setFillColor(sf::Color(0, 0, 0, opacity));
     Play.setOrigin((double)Play.getLocalBounds().width / 2, (double)Play.getLocalBounds().height / 2);
-    Play.setPosition(sf::Vector2f(250.f, 500.f));// absolute position
+    Play.setPosition(sf::Vector2f(250.f, 400.f));// absolute position
 
     clock.restart();
 
     opacity += 6.0f /* * deltatime */;
-    //if(sf::Mouse::getPosition(_window).x)
-           this->_window.draw(Play);
+
+
+    if (sf::Mouse::getPosition(_window).x > 200.f && sf::Mouse::getPosition(_window).x < 300.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
+    {
+        Play.setFillColor(sf::Color(255, 0, 0, 255));
+    }
+
+    this->_window.draw(Play);
 }
+
+//Display - Settings Button
 
 void Game::displaySettingsButton() {
 
@@ -169,7 +183,6 @@ void Game::displaySettingsButton() {
         opacity = 255;
     }
     sf::Font font;
-    sf::Clock clock;
     if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
     {
     }
@@ -177,16 +190,21 @@ void Game::displaySettingsButton() {
     Settings.setFont(font);
     Settings.setString("Settings");
     Settings.setCharacterSize(50);
-    Settings.setFillColor(sf::Color(255, 255, 255, opacity));
+    Settings.setFillColor(sf::Color(0, 0, 0, opacity));
     Settings.setOrigin((double)Settings.getLocalBounds().width / 2, (double)Settings.getLocalBounds().height / 2);
-    Settings.setPosition(sf::Vector2f(500.f, 500.f));// absolute position
-
-    clock.restart();
+    Settings.setPosition(sf::Vector2f(500.f, 400.f));// absolute position
 
     opacity += 6.0f /* * deltatime */;
 
+    if (sf::Mouse::getPosition(_window).x > 400.f && sf::Mouse::getPosition(_window).x < 600.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
+    {
+        Settings.setFillColor(sf::Color(0, 255, 0, 255));
+    }
+
     this->_window.draw(Settings);
 }
+
+//Display - Quit Button
 
 void Game::displayQuitButton() {
 
@@ -203,9 +221,9 @@ void Game::displayQuitButton() {
     Quit.setFont(font);
     Quit.setString("Quit");
     Quit.setCharacterSize(50);
-    Quit.setFillColor(sf::Color(255, 255, 255, opacity));
+    Quit.setFillColor(sf::Color(0, 0, 0, opacity));
     Quit.setOrigin((double)Quit.getLocalBounds().width / 2, (double)Quit.getLocalBounds().height / 2);
-    Quit.setPosition(sf::Vector2f(750.f, 500.f));// absolute position
+    Quit.setPosition(sf::Vector2f(750.f, 400.f));// absolute position
 
     clock.restart();
 
@@ -213,25 +231,76 @@ void Game::displayQuitButton() {
 
    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        if (sf::Mouse::getPosition(_window).x > 700.f && sf::Mouse::getPosition(_window).x < 800.f && sf::Mouse::getPosition(_window).y > 500.f && sf::Mouse::getPosition(_window).y < 550.f)
+        if (sf::Mouse::getPosition(_window).x > 700.f && sf::Mouse::getPosition(_window).x < 800.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
         {
             this->_window.close();
         }
     }
 
+   if (sf::Mouse::getPosition(_window).x > 700.f && sf::Mouse::getPosition(_window).x < 800.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
+   {
+       Quit.setFillColor(sf::Color(0, 0, 255, 255));
+   }
+
     this->_window.draw(Quit);
 }
 
-void Game::audioMainMenu() {
-    sf::SoundBuffer whodapokemon;
 
-    if (!whodapokemon.loadFromFile("Audio/whodapokemon.wav"))
+void Game::goeliseTravel() {
+    std::cout << this->GoeliseTravel << std::endl;
+
+    sf::Texture wingull;
+    wingull.setSmooth(true);
+ 
+    this->movingWingull.setScale(sf::Vector2f(0.4f, 0.4f));
+
+    if (!wingull.loadFromFile("Textures/Mainmenu/wingull.png"))
     {
-        std::cout << "Error" << std::endl;
-    }
-    sf::Sound whodispokemon;
-    whodispokemon.setBuffer(whodapokemon);
-    whodispokemon.setVolume(90);
-    whodispokemon.play();
 
+    }
+   
+    this->movingWingull.setTexture(wingull);
+    this->movingWingull.setRotation(10);
+    this->movingWingull.setPosition(sf::Vector2f(this->movingWingull.getPosition().x - 1.f, this->movingWingull.getPosition().y)); // absolute position
+    this->_window.draw(this->movingWingull);
+
+    if (this->movingWingull.getPosition().x == -100)
+    {
+        this->GoeliseTravel = false;
+    }
+    if (this->GoeliseTravel == false)
+    {
+        this->movingWingull.setPosition(sf::Vector2f(1000.f, 150.f));
+        this->GoeliseTravel = true;
+
+    }
+}
+
+void Game::goeliseTravel2() {
+    std::cout << this->GoeliseTravel << std::endl;
+
+    sf::Texture wingull2;
+    wingull2.setSmooth(true);
+
+    this->movingWingull2.setScale(sf::Vector2f(0.6f, 0.6f));
+
+    if (!wingull2.loadFromFile("Textures/Mainmenu/wingull.png"))
+    {
+
+    }
+
+    this->movingWingull2.setTexture(wingull2);
+    this->movingWingull2.setRotation(10);
+    this->movingWingull2.setPosition(sf::Vector2f(this->movingWingull2.getPosition().x - 1.f, this->movingWingull2.getPosition().y)); // absolute position
+    this->_window.draw(this->movingWingull2);
+
+    if (this->movingWingull2.getPosition().x == -200)
+    {
+        this->GoeliseTravel = false;
+    }
+    if (this->GoeliseTravel == false)
+    {
+        this->movingWingull2.setPosition(sf::Vector2f(1000.f, 250.f));
+        this->GoeliseTravel = true;
+    }
 }

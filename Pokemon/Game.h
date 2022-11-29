@@ -7,9 +7,14 @@ class Game
 {
 private:
     sf::RenderWindow _window;
+    
     float opacity;
 
 public:
+    bool GoeliseTravel;
+    sf::Sprite movingWingull;
+    sf::Sprite movingWingull2;
+
     Game(void);
 
     //Global display
@@ -20,9 +25,11 @@ public:
     void display(void);
     void drawTitle();
     void drawPokeball();
+    void goeliseTravel();
+    void goeliseTravel2();
+
 
     //MainMenu display
-    void audioMainMenu();
     void drawBackground();
     void drawEnterText();
 
