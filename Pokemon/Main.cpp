@@ -114,7 +114,14 @@ int main() { // MAIN ULYSS
 
 			break;
 
+		case 4:
+			g.WildPokemon();
+			g.GameBattleScreen();
+			if (g.getBattle().BattlePhase == -1) {
+				e = 3;
+			}
 		}
+		
 	}
 
 	return 0;
