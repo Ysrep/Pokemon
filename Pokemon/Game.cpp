@@ -11,9 +11,16 @@ Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
 
     this->_window.setVerticalSyncEnabled(true);
     this->_window.setFramerateLimit(60);
+    this->_window.getSize();
     opacity = 0;
     this->GoeliseTravel = true;
 }
+
+
+sf::RenderWindow& Game::GetWindow() {
+    return this->_window;
+}
+
 
 bool Game::isOpen(void) const
 {
@@ -27,6 +34,7 @@ void Game::handleEvents(void)
     {
         if (event.type == sf::Event::Closed)
             this->_window.close();
+
     }
     switch (event.type)
     {
@@ -35,6 +43,14 @@ void Game::handleEvents(void)
             << sf::Mouse::getPosition(_window).x << ", "
             << sf::Mouse::getPosition(_window).y << "\n";
         break;
+
+    case sf::Event::Resized:
+    {
+        std::cout << "-------------------------------------------------------------------------------------------------------" << std::endl;
+        std::cout << "new width: " << event.size.width << std::endl;
+        std::cout << "new height: " << event.size.height << std::endl;
+        this->_window.setSize(sf::Vector2u(event.size.width, event.size.height));
+    }
 
     default:
         break;
@@ -59,20 +75,42 @@ void Game::display(void)
 void Game::drawBackground()
 {
     sf::Texture arena;
-    arena.setSmooth(true);
+    //arena.setSmooth(true);
     sf::Sprite background;
-    background.setScale(sf::Vector2f(1.5f, 2.f));
 
     if (!arena.loadFromFile("Textures/Mainmenu/arena.jpg"))
     {
 
     }
     background.setTexture(arena);
-
+    double ScaleX = (double)this->_window.getSize().x / background.getTextureRect().width;
+    double ScaleY = (double)this->_window.getSize().y / background.getTextureRect().height;
+    background.scale(sf::Vector2f(ScaleX, ScaleY));
+    background.setOrigin(sf::Vector2f((double)background.getTextureRect().width / 2, (double)background.getTextureRect().height / 2));
+    background.setPosition(sf::Vector2f((double)this->_window.getSize().x / 2, (double)this->_window.getSize().y / 2));
     this->_window.draw(background);
 }
 
-//Display - Title Image
+//Display Settings BG
+
+void Game::drawBackgroundSettings()
+{
+    sf::Texture settings;
+    settings.setSmooth(true);
+    sf::Sprite backgroundsettings;
+    backgroundsettings.setScale(sf::Vector2f(1.f, 2.f));
+
+    if (!settings.loadFromFile("Textures/Mainmenu/Settings.jpg"))
+    {
+
+    }
+    backgroundsettings.setTexture(settings);
+
+    this->_window.draw(backgroundsettings);
+}
+
+
+// Display - Title Image
 
 void Game::drawTitle()
 {
@@ -91,7 +129,7 @@ void Game::drawTitle()
     this->_window.draw(titleText);
 }
 
-//Display - Pokeball
+// Display - Pokeball
 
 void Game::drawPokeball() {
 
@@ -112,7 +150,7 @@ void Game::drawPokeball() {
 
 }
 
-//Display - Press Enter
+// Display - Press Enter
 
 void Game::drawEnterText() {
 
@@ -140,7 +178,7 @@ void Game::drawEnterText() {
     this->_window.draw(MainmenuText);
 }
 
-//Display - Play Button
+// Display - Play Button
 
 void Game::displayPlayButton() {
 
@@ -174,7 +212,7 @@ void Game::displayPlayButton() {
     this->_window.draw(Play);
 }
 
-//Display - Settings Button
+ // Display - Settings Button
 
 void Game::displaySettingsButton() {
 
@@ -196,6 +234,8 @@ void Game::displaySettingsButton() {
 
     opacity += 6.0f /* * deltatime */;
 
+   
+
     if (sf::Mouse::getPosition(_window).x > 400.f && sf::Mouse::getPosition(_window).x < 600.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
     {
         Settings.setFillColor(sf::Color(0, 255, 0, 255));
@@ -204,7 +244,7 @@ void Game::displaySettingsButton() {
     this->_window.draw(Settings);
 }
 
-//Display - Quit Button
+// Display - Quit Button
 
 void Game::displayQuitButton() {
 

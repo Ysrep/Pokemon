@@ -12,8 +12,12 @@ private:
 
 public:
     bool GoeliseTravel;
+
     sf::Sprite movingWingull;
     sf::Sprite movingWingull2;
+
+    sf::Sprite background;
+    sf::Texture arena;
 
     Game(void);
 
@@ -31,10 +35,14 @@ public:
 
     //MainMenu display
     void drawBackground();
+    void drawBackgroundSettings();
     void drawEnterText();
 
     //BigMainMenu display
     void displayPlayButton();
     void displaySettingsButton();
     void displayQuitButton();
+
+    //getwindow
+    sf::RenderWindow& GetWindow();
 };

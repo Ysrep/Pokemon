@@ -47,9 +47,6 @@
     <ClInclude Include="AnimatedEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Config.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mainCharacter.h">
       <Filter>Header Files</Filter>
     </ClInclude>

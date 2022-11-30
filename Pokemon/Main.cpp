@@ -1,5 +1,5 @@
 #include "Game.h"
-#include "Config.h"
+
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
@@ -13,9 +13,16 @@ int main() { // MAIN ULYSS
 	int count = 0;
 	int e = 0;
 
+	sf::Vector2f position;
+	sf::Vector2f position2;
+
+	if (!g.arena.loadFromFile("Textures/Mainmenu/arena.jpg"))
+	{
+	}
+
 	sf::SoundBuffer whodapokemon;
 
-	if (!whodapokemon.loadFromFile("Audio/whodapokemon.wav"))
+	if (!whodapokemon.loadFromFile("Audio/whodapokemon.wav")) //Second menu's audio
 	{
 		std::cout << "Error" << std::endl;
 	}
@@ -25,7 +32,7 @@ int main() { // MAIN ULYSS
 
 	sf::SoundBuffer backgroundMusic;
 
-	if (!backgroundMusic.loadFromFile("Audio/Mouettes.wav"))
+	if (!backgroundMusic.loadFromFile("Audio/Mouettes.wav")) //Second menu music
 	{
 		std::cout << "Error" << std::endl;
 	}
@@ -33,12 +40,12 @@ int main() { // MAIN ULYSS
 	Mouettes.setBuffer(backgroundMusic);
 	Mouettes.setVolume(90);
 
-	while (g.isOpen())
+	while (g.isOpen()) // Main loop
 	{
 
-		switch (e)
+		switch (e) // Switch pages
 		{
-		case 0:
+		case 0: //Initial menu
 			g.clear();
 			g.handleEvents();
 			whodispokemon.play();
@@ -55,30 +62,57 @@ int main() { // MAIN ULYSS
 			}
 			break;
 
-		case 1:
+		case 1: //Second menu when enter is pressed
 
 			g.clear();
 
 			g.handleEvents();
 			g.drawBackground();
+			if (!g.arena.loadFromFile("Textures/Mainmenu/arena.jpg"))
+			{
+			}
+			g.background.setTexture(g.arena);
 
 			g.goeliseTravel();
-			sf::Vector2f position = g.movingWingull.getPosition();
+			position = g.movingWingull.getPosition();
 			std::cout << position.x << " : " << position.y << std::endl;
 
 			g.drawPokeball();
 			g.drawTitle();
 
 			g.goeliseTravel2();
-			sf::Vector2f position2 = g.movingWingull2.getPosition();
+			position2 = g.movingWingull2.getPosition();
 			std::cout << position2.x << " : " << position2.y << std::endl;
 
 
 			g.displayPlayButton();
+
+
 			g.displaySettingsButton();
+			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			{
+				if (sf::Mouse::getPosition(g.GetWindow()).x > 450.f && sf::Mouse::getPosition(g.GetWindow()).x < 600.f && sf::Mouse::getPosition(g.GetWindow()).y > 400.f && sf::Mouse::getPosition(g.GetWindow()).y < 450.f)
+				{
+					e = 2;
+				}
+			}
+
 			g.displayQuitButton();
 
 			g.display();
+
+			break;
+
+		case 2:
+
+			g.clear();
+			g.handleEvents();
+			g.drawBackgroundSettings();
+
+
+			g.display();
+
+			break;
 
 		}
 	}
