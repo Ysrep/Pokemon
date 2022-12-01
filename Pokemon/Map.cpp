@@ -3,36 +3,80 @@
 
 Map::Map(sf::RenderWindow* window){
 	this->window = window;
+	this->map;
+	this->map.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
+	map.scale(sf::Vector2f(2.5, 2.5));
+	charPosX = 0;
+	charPosY = 0;
 }
 
 void Map::MappingTile() {
-	int count = 0;
-	int anim_count = 0;
+	sf::Texture MapTex;
 
-	sf::RectangleShape rectangle(sf::Vector2f(64, 64));
+	MapTex.loadFromFile("Textures/map/pokemonMap.png");
+	map.setTexture(MapTex);
 
-	rectangle.setFillColor(sf::Color(255, 255, 255));
-	rectangle.setSize(sf::Vector2f(64, 64));
-	rectangle.setPosition(0, 0);
-	rectangle.setOrigin(rectangle.getSize().x / 2, rectangle.getSize().y / 2);
-	this->window->draw(rectangle);
-
-	for (int i = 0; i < 10; i++) {
-		for (int i = 0; i < 10; i++) {
-			this->window->draw(rectangle);
-			rectangle.setPosition(rectangle.getPosition().x + 64 * 2, rectangle.getPosition().y);
-		}
-		rectangle.setPosition(64, rectangle.getPosition().y + 64);
-		for (int i = 0; i < 10; i++) {
-			this->window->draw(rectangle);
-			rectangle.setPosition(rectangle.getPosition().x + 64 * 2, rectangle.getPosition().y);
-		}
-		rectangle.setPosition(0, rectangle.getPosition().y + 64);
-	}
+	map.setOrigin((double)map.getTextureRect().width / 2, (double)map.getTextureRect().height / 2);
+	this->window->draw(map);
 }
 
 void Map::movingMap() {
-	while (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 
+	int count = 0;
+
+	if (count % 1250 == 0) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			charPosX -= 1;
+			map.setPosition(map.getPosition().x - 1, map.getPosition().y);
+			while (charPosX % 64 != 0) {
+				charPosX -= 1;
+				map.setPosition(map.getPosition().x - 1, map.getPosition().y);
+				this->window->clear();
+				this->window->draw(map);
+				window->display();
+			}
+		}
+	}
+
+	if (count % 1250 == 0) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+			charPosY -= 1;
+			map.setPosition(map.getPosition().x, map.getPosition().y - 1);
+			while (charPosY % 64 != 0) {
+				charPosY -= 1;
+				map.setPosition(map.getPosition().x, map.getPosition().y - 1);
+				this->window->clear();
+				this->window->draw(map);
+				window->display();
+			}
+		}
+	}
+
+	if (count % 1250 == 0) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			charPosX += 1;
+			map.setPosition(map.getPosition().x + 1, map.getPosition().y);
+			while (charPosX % 64 != 0) {
+				charPosX += 1;
+				map.setPosition(map.getPosition().x + 1, map.getPosition().y);
+				this->window->clear();
+				this->window->draw(map);
+				window->display();
+			}
+		}
+	}
+
+	if (count % 1250 == 0) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+			charPosY += 1;
+			map.setPosition(map.getPosition().x + 1, map.getPosition().y + 1);
+			while (charPosY % 64 != 0) {
+				charPosY += 1;
+				map.setPosition(map.getPosition().x + 4, map.getPosition().y);
+				this->window->clear();
+				this->window->draw(map);
+				window->display();
+			}
+		}
 	}
 }
