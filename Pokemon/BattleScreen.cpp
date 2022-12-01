@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <SFML/Graphics.hpp>
+#include <cstring>
 #define TRAINER_ANIM_RECT                                                                                                        \
     {                                                                                                                            \
         sf::IntRect(0, 0, 178, 200), sf::IntRect(178, 0, 180, 200), sf::IntRect(358, 0, 180, 200), sf::IntRect(528, 0, 180, 200), sf::IntRect(698,0,180,200) \
@@ -10,7 +11,8 @@
     {                                                                                                                            \
         sf::IntRect(3, 3, 16, 16), sf::IntRect(19, 3, 16, 16), sf::IntRect(35, 3, 16, 16), sf::IntRect(51, 3, 16, 16), sf::IntRect(67,3,16,16), sf::IntRect(83, 3, 16, 16), sf::IntRect(99, 3, 16, 16), sf::IntRect(115, 3, 16, 16), sf::IntRect(131, 3, 16, 16) \
     }
-BattleScreen::BattleScreen(){
+BattleScreen::BattleScreen() {
+
 	this->window = NULL;
 	this->EnemyPokemon = NULL;
 	this->AllyPokemon = NULL;
@@ -18,7 +20,6 @@ BattleScreen::BattleScreen(){
 	this->BattlePhase = NULL;
 	this->BackgroundTexture;
 	this->BackGround;
-	this->font;
 	this->RunAttempt = NULL;
 }
 
@@ -45,28 +46,28 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	sf::Text Attacktext;
 	Attacktext.setFont(this->font);
 	Attacktext.setString("Attack");
-	Attacktext.setCharacterSize(50);
+	Attacktext.setCharacterSize(30);
 	Attacktext.setFillColor(sf::Color::Black);
 	Attacktext.setOrigin((double)Attacktext.getLocalBounds().width / 2, (double)Attacktext.getLocalBounds().height / 2);
 
 	sf::Text Bagtext;
 	Bagtext.setFont(this->font);
 	Bagtext.setString("Bag");
-	Bagtext.setCharacterSize(50);
+	Bagtext.setCharacterSize(30);
 	Bagtext.setFillColor(sf::Color::Black);
 	Bagtext.setOrigin((double)Bagtext.getLocalBounds().width / 2, (double)Bagtext.getLocalBounds().height / 2);
 
 	sf::Text Runtext;
 	Runtext.setFont(this->font);
 	Runtext.setString("Run");
-	Runtext.setCharacterSize(50);
+	Runtext.setCharacterSize(30);
 	Runtext.setFillColor(sf::Color::Black);
 	Runtext.setOrigin((double)Runtext.getLocalBounds().width / 2, (double)Runtext.getLocalBounds().height / 2);
 
 	sf::Text Pokemontext;
 	Pokemontext.setFont(this->font);
 	Pokemontext.setString("Pokemon");
-	Pokemontext.setCharacterSize(50);
+	Pokemontext.setCharacterSize(25);
 	Pokemontext.setFillColor(sf::Color::Black);
 	Pokemontext.setOrigin((double)Pokemontext.getLocalBounds().width / 2, (double)Pokemontext.getLocalBounds().height / 2);
 
@@ -77,7 +78,7 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	attack.setOutlineThickness(2);
 	attack.setOutlineColor(sf::Color::Black);
 
-	Attacktext.setPosition(attack.getPosition().x + (attack.getSize().x / 2) - 10, attack.getPosition().y + (attack.getSize().y / 2) - 15);
+	Attacktext.setPosition(attack.getPosition().x + (attack.getSize().x / 2) - 10, attack.getPosition().y + (attack.getSize().y / 2) - 10);
 
 	sf::CircleShape roundedAttack((double)attack.getSize().y / 2);
 	roundedAttack.setOrigin((double)roundedAttack.getTextureRect().width / 2, (double)roundedAttack.getTextureRect().height / 2);
@@ -93,7 +94,7 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	bag.setOutlineThickness(2);
 	bag.setOutlineColor(sf::Color::Black);
 
-	Bagtext.setPosition(bag.getPosition().x + (bag.getSize().x / 2) - 10, bag.getPosition().y + (bag.getSize().y / 2) - 15);
+	Bagtext.setPosition(bag.getPosition().x + (bag.getSize().x / 2), bag.getPosition().y + (bag.getSize().y / 2) - 10);
 
 	sf::CircleShape roundedBag((double)bag.getSize().y / 2);
 	roundedBag.setOrigin((double)roundedBag.getTextureRect().width / 2, (double)roundedBag.getTextureRect().height / 2);
@@ -109,7 +110,7 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	run.setOutlineThickness(2);
 	run.setOutlineColor(sf::Color::Black);
 
-	Runtext.setPosition(run.getPosition().x + (run.getSize().x / 2) - 10, run.getPosition().y + (run.getSize().y / 2) - 15);
+	Runtext.setPosition(run.getPosition().x + (run.getSize().x / 2), run.getPosition().y + (run.getSize().y / 2) - 10);
 
 	sf::CircleShape roundedRun((double)run.getSize().y / 2);
 	roundedRun.setOrigin((double)roundedRun.getTextureRect().width / 2, (double)roundedRun.getTextureRect().height / 2);
@@ -125,7 +126,7 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	pokemon.setOutlineThickness(2);
 	pokemon.setOutlineColor(sf::Color::Black);
 
-	Pokemontext.setPosition(pokemon.getPosition().x + (pokemon.getSize().x / 2) - 10, pokemon.getPosition().y + (pokemon.getSize().y / 2) - 15);
+	Pokemontext.setPosition(pokemon.getPosition().x + (pokemon.getSize().x / 2) - 10, pokemon.getPosition().y + (pokemon.getSize().y / 2) - 10);
 
 	sf::CircleShape roundedPokemon((double)pokemon.getSize().y / 2);
 	roundedPokemon.setOrigin((double)roundedPokemon.getTextureRect().width / 2, (double)roundedPokemon.getTextureRect().height / 2);
@@ -144,10 +145,10 @@ BattleScreen::BattleScreen(sf::RenderWindow* window, int BattleGround) {
 	this->CircleButton["BottomRight"] = roundedRun;
 	this->CircleButton["TopRight"] = roundedBag;
 
-	this->Text["ChooseActionTopLeft"] = Attacktext;
-	this->Text["ChooseActionBottomLeft"] = Pokemontext;
-	this->Text["ChooseActionBottomRight"] = Runtext;
-	this->Text["ChooseActionTopRight"] = Bagtext;
+	this->TextButton["ChooseActionTopLeft"] = Attacktext;
+	this->TextButton["ChooseActionBottomLeft"] = Pokemontext;
+	this->TextButton["ChooseActionBottomRight"] = Runtext;
+	this->TextButton["ChooseActionTopRight"] = Bagtext;
 
 };
 
@@ -164,20 +165,24 @@ BattleScreen::~BattleScreen() {
 	this->RectangleText;
 	this->Button;
 	this->CircleButton;
-	this->Text;
+	this->TextButton;
 }
 
 
 
-void BattleScreen::BattleAnimation(sf::Event event) {
 
-}
 
 void BattleScreen::StartNewBattle() {
 	this->EnemyPokemon = NULL;
 	this->AllyPokemon = NULL;
 	this->BattlePhase = 1;
 	this->RunAttempt = 1;
+}
+
+// Start Battle
+
+void BattleScreen::BattleAnimation(sf::Event event) {
+
 }
 
 void BattleScreen::StartBattle(sf::Event event) {
@@ -291,10 +296,75 @@ void BattleScreen::StartBattle(sf::Event event) {
 	}
 };
 
-void BattleScreen::ChooseBattleAction(bool click, const char* buttonName, sf::Event event) {
+void BattleScreen::ChooseBattleAction(bool click, const char* buttonName) {
 	this->window->clear();
 	this->window->draw(this->BackGround);
 	this->window->draw(this->RectangleText);
+
+	sf::RectangleShape AllyPokemonInfo;
+	AllyPokemonInfo.setSize(sf::Vector2f(175, 50));
+	AllyPokemonInfo.setPosition((this->window->getSize().x- AllyPokemonInfo.getLocalBounds().width-2), (this->window->getSize().y-this->RectangleText.getLocalBounds().height - AllyPokemonInfo.getLocalBounds().height - 30));
+	AllyPokemonInfo.setOutlineThickness(2);
+	AllyPokemonInfo.setOutlineColor(sf::Color::Black);
+
+	sf::Text Level;
+	Level.setFont(this->font);
+	Level.setString("N." + to_string(10));
+	Level.setCharacterSize(20);
+	Level.setFillColor(sf::Color::Black);
+	Level.setPosition((AllyPokemonInfo.getPosition().x+100), (AllyPokemonInfo.getPosition().y));
+
+	sf::Text PokemonName;
+	PokemonName.setFont(this->font);
+	PokemonName.setString("Rattata");
+	PokemonName.setCharacterSize(20);
+	PokemonName.setFillColor(sf::Color::Black);
+	PokemonName.setPosition((AllyPokemonInfo.getPosition().x), (AllyPokemonInfo.getPosition().y));
+
+	sf::Text Health;
+	Health.setFont(this->font);
+	Health.setString(to_string(100) + "/" + to_string(100));
+	Health.setCharacterSize(20);
+	Health.setFillColor(sf::Color::Black);
+	Health.setPosition((AllyPokemonInfo.getPosition().x), (AllyPokemonInfo.getPosition().y+20));
+
+	this->window->draw(AllyPokemonInfo);
+	this->window->draw(Level);
+	this->window->draw(PokemonName);
+	this->window->draw(Health);
+
+	sf::RectangleShape EnnemyPokemonInfo;
+	EnnemyPokemonInfo.setSize(sf::Vector2f(175, 50));
+	EnnemyPokemonInfo.setPosition(0, EnnemyPokemonInfo.getLocalBounds().height);
+	EnnemyPokemonInfo.setOutlineThickness(2);
+	EnnemyPokemonInfo.setOutlineColor(sf::Color::Black);
+
+	sf::Text EnnemyLevel;
+	EnnemyLevel.setFont(this->font);
+	EnnemyLevel.setString("N." + to_string(10));
+	EnnemyLevel.setCharacterSize(20);
+	EnnemyLevel.setFillColor(sf::Color::Black);
+	EnnemyLevel.setPosition((EnnemyPokemonInfo.getPosition().x + 100), (EnnemyPokemonInfo.getPosition().y));
+
+	sf::Text EnnemyPokemonName;
+	EnnemyPokemonName.setFont(this->font);
+	EnnemyPokemonName.setString("Rattata");
+	EnnemyPokemonName.setCharacterSize(20);
+	EnnemyPokemonName.setFillColor(sf::Color::Black);
+	EnnemyPokemonName.setPosition((EnnemyPokemonInfo.getPosition().x), (EnnemyPokemonInfo.getPosition().y));
+
+	sf::Text EnnemyHealth;
+	EnnemyHealth.setFont(this->font);
+	EnnemyHealth.setString(to_string(100) + "/" + to_string(100));
+	EnnemyHealth.setCharacterSize(20);
+	EnnemyHealth.setFillColor(sf::Color::Black);
+	EnnemyHealth.setPosition((EnnemyPokemonInfo.getPosition().x), (EnnemyPokemonInfo.getPosition().y + 20));
+
+	this->window->draw(EnnemyPokemonInfo);
+	this->window->draw(EnnemyLevel);
+	this->window->draw(EnnemyPokemonName);
+	this->window->draw(EnnemyHealth);
+
 	for (auto const& i : this->CircleButton) {
 		this->window->draw(i.second);
 	}
@@ -316,6 +386,16 @@ void BattleScreen::ChooseBattleAction(bool click, const char* buttonName, sf::Ev
 		}
 
 	}
+	for (auto const& i : this->TextButton) {
+		if (i.first == "ChooseActionTopLeft" || i.first == "ChooseActionBottomLeft" || i.first == "ChooseActionBottomRight" || i.first == "ChooseActionTopRight") {
+			this->TextButton[i.first].setFont(this->font);
+			this->window->draw(i.second);
+		}
+
+
+	}
+
+
 
 
 	this->window->display();
@@ -333,7 +413,9 @@ void BattleScreen::ChooseBattleAction(bool click, const char* buttonName, sf::Ev
 	}
 }
 
-void BattleScreen::ChooseAttack(sf::Event event) {
+// Choose Attack and Dommage function
+
+void BattleScreen::ChooseAttack() {
 	this->window->clear();
 	this->window->draw(this->BackGround);
 	this->window->draw(this->RectangleText);
@@ -361,77 +443,109 @@ void BattleScreen::ChooseAttack(sf::Event event) {
 			this->window->draw(line);
 		}
 	}
-	for (auto const& i : this->Text) {
+	for (auto const& i : this->TextButton) {
 		if (i.first == "ChooseAttackTopLeft" || i.first == "ChooseAttackBottomLeft" || i.first == "ChooseAttackBottomRight" || i.first == "ChooseAttackTopRight")
+		{
+			this->TextButton[i.first].setFont(this->font);
 			this->window->draw(i.second);
+		}
 	}
 	this->window->display();
 }
 
-void BattleScreen::DommageStep(sf::Event event) {
+void BattleScreen::DommageStep() {
 	this->window->clear();
 	this->window->draw(this->BackGround);
 	this->window->draw(this->RectangleText);
 	this->window->display();
 }
 
-void BattleScreen::FailedRunDommageStep(sf::Event event)
-{
-}
+//Run and After Run
 
-void BattleScreen::BagStep(sf::Event event) {
-	this->window->clear();
-	this->window->display();
-}
-
-void BattleScreen::RunStep(sf::Event event) {
+void BattleScreen::RunStep() {
 	srand(time(0));
 	int oddsEscape = (((75 * 128) / 55) + 30 * this->RunAttempt) % 256;
 	int random = (rand() % 256);
-	while (!sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-		while (this->window->pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed) {
-				this->window->close();
-				this->BattlePhase = -1;
-			}
-		}
-		this->window->clear();
-		this->window->draw(this->BackGround);
-		this->window->draw(this->RectangleText);
-		if (random > oddsEscape) {
-			sf::Text RunMessage;
-			RunMessage.setFont(this->font);
-			RunMessage.setString("You failed to run away");
-			RunMessage.setCharacterSize(50);
-			RunMessage.setFillColor(sf::Color::Black);
-			RunMessage.setOrigin((double)RunMessage.getLocalBounds().width / 2, (double)RunMessage.getLocalBounds().height / 2);
-			RunMessage.setPosition(this->RectangleText.getPosition().x + RunMessage.getLocalBounds().width, this->RectangleText.getPosition().y + RunMessage.getLocalBounds().height);
-			this->window->draw(RunMessage);
-			this->window->display();
 
-		}
-		else if (random <= oddsEscape) {
-			sf::Text RunMessage;
-			RunMessage.setFont(this->font);
-			RunMessage.setString("You got away safely");
-			RunMessage.setCharacterSize(50);
-			RunMessage.setFillColor(sf::Color::Black);
-			RunMessage.setOrigin((double)RunMessage.getLocalBounds().width / 2, (double)RunMessage.getLocalBounds().height / 2);
-			RunMessage.setPosition(this->RectangleText.getPosition().x + RunMessage.getLocalBounds().width, this->RectangleText.getPosition().y + RunMessage.getLocalBounds().height);
-			this->window->draw(RunMessage);
-			this->window->display();
-		}
-	}
+	this->window->clear();
+	this->window->draw(this->BackGround);
+	this->window->draw(this->RectangleText);
 	if (random > oddsEscape) {
-		this->BattlePhase = 8;
+		sf::Text RunMessage;
+		RunMessage.setFont(this->font);
+		RunMessage.setString("You failed to run away");
+		RunMessage.setCharacterSize(50);
+		RunMessage.setFillColor(sf::Color::Black);
+		RunMessage.setOrigin((double)RunMessage.getLocalBounds().width / 2, (double)RunMessage.getLocalBounds().height / 2);
+		RunMessage.setPosition(this->RectangleText.getPosition().x + RunMessage.getLocalBounds().width, this->RectangleText.getPosition().y + RunMessage.getLocalBounds().height);
+		this->window->draw(RunMessage);
+		this->window->display();
+
 	}
-	else {
-		this->BattlePhase = -1;
+	else if (random <= oddsEscape) {
+		sf::Text RunMessage;
+		RunMessage.setFont(this->font);
+		RunMessage.setString("You got away safely");
+		RunMessage.setCharacterSize(50);
+		RunMessage.setFillColor(sf::Color::Black);
+		RunMessage.setOrigin((double)RunMessage.getLocalBounds().width / 2, (double)RunMessage.getLocalBounds().height / 2);
+		RunMessage.setPosition(this->RectangleText.getPosition().x + RunMessage.getLocalBounds().width, this->RectangleText.getPosition().y + RunMessage.getLocalBounds().height);
+		this->window->draw(RunMessage);
+		this->window->display();
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		if (random > oddsEscape) {
+			this->BattlePhase = 8;
+		}
+		else {
+			this->BattlePhase = -1;
+		}
+	}
+}
+
+void BattleScreen::FailedRunDommageStep() {
+
+}
+
+// Change Pokemon
 
 
+void BattleScreen::ChoosePokemon() {
+	this->window->clear();
+	this->window->draw(this->BackGround);
+	this->window->draw(this->RectangleText);
+	sf::Text WorkInProgress;
+	WorkInProgress.setFont(this->font);
+	WorkInProgress.setString("Work In Progress");
+	WorkInProgress.setCharacterSize(50);
+	WorkInProgress.setFillColor(sf::Color::Black);
+	WorkInProgress.setOrigin((double)WorkInProgress.getLocalBounds().width / 2, (double)WorkInProgress.getLocalBounds().height / 2);
+	WorkInProgress.setPosition(this->RectangleText.getPosition().x + WorkInProgress.getLocalBounds().width, this->RectangleText.getPosition().y + WorkInProgress.getLocalBounds().height);
+	this->window->draw(WorkInProgress);
+	this->window->display();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		this->BattlePhase = 2;
+	}
+}
 
+// Open the bag
+
+void BattleScreen::BagStep() {
+	this->window->clear();
+	this->window->draw(this->BackGround);
+	this->window->draw(this->RectangleText);
+	sf::Text WorkInProgress;
+	WorkInProgress.setFont(this->font);
+	WorkInProgress.setString("Work In Progress");
+	WorkInProgress.setCharacterSize(50);
+	WorkInProgress.setFillColor(sf::Color::Black);
+	WorkInProgress.setOrigin((double)WorkInProgress.getLocalBounds().width / 2, (double)WorkInProgress.getLocalBounds().height / 2);
+	WorkInProgress.setPosition(this->RectangleText.getPosition().x + WorkInProgress.getLocalBounds().width, this->RectangleText.getPosition().y + WorkInProgress.getLocalBounds().height);
+	this->window->draw(WorkInProgress);
+	this->window->display();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		this->BattlePhase = 2;
+	}
 }
 
 
@@ -441,18 +555,18 @@ void BattleScreen::ShowBattleScreen(bool click, const char* buttonName, sf::Even
 	else if (this->BattlePhase == 1)
 		this->StartBattle(event);
 	else if (this->BattlePhase == 2)
-		this->ChooseBattleAction(click, buttonName, event);
+		this->ChooseBattleAction(click, buttonName);
 	else if (this->BattlePhase == 3)
-		this->ChooseAttack(event);
+		this->ChooseAttack();
 	else if (this->BattlePhase == 4)
-		this->DommageStep(event);
+		this->DommageStep();
 	else if (this->BattlePhase == 5)
-		this->BagStep(event);
+		this->BagStep();
 	else if (this->BattlePhase == 6)
-		this->RunStep(event);
+		this->RunStep();
 	else if (this->BattlePhase == 7)
-		this->ChooseBattleAction(click, buttonName, event);
+		this->ChoosePokemon();
 	else if (this->BattlePhase == 8)
-		this->FailedRunDommageStep(event);
+		this->FailedRunDommageStep();
 
 };

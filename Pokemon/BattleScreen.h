@@ -17,22 +17,23 @@ public:
 
 	void StartNewBattle();
 
-	void ChooseBattleAction(bool click, const char* buttonName, sf::Event event);
+	void ChooseBattleAction(bool click, const char* buttonName);
 
-	void ChooseAttack(sf::Event event);
+	void ChooseAttack();
 
-	void DommageStep(sf::Event event);
+	void DommageStep();
 
-	void FailedRunDommageStep(sf::Event event);
+	void FailedRunDommageStep();
 
 	void ChoosePokemon();
 
-	void BagStep(sf::Event event);
+	void BagStep();
 
-	void RunStep(sf::Event event);
+	void RunStep();
+
 	int BattlePhase;
 	std::unordered_map<const char*, sf::RectangleShape> Button;
-	std::unordered_map<const char*, sf::Text> Text;
+	std::unordered_map<const char*, sf::Text> TextButton;
 	std::unordered_map<const char*, sf::CircleShape> CircleButton;
 protected:
 
