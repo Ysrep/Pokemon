@@ -9,5 +9,8 @@ public:
 	sf::RenderWindow* window;
 	void MappingTile();
 	void movingMap();
+	sf::Sprite map;
+	int charPosX;
+	int charPosY;
 };
 
