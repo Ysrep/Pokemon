@@ -98,17 +98,17 @@ void Game::drawBackgroundSettings()
     sf::Texture settings;
     settings.setSmooth(true);
     sf::Sprite backgroundsettings;
-    backgroundsettings.setScale(sf::Vector2f(1.f, 2.f));
 
+    backgroundsettings.setScale(sf::Vector2f(1.2f, 1.f));
     if (!settings.loadFromFile("Textures/Mainmenu/Settings.jpg"))
     {
 
     }
+
     backgroundsettings.setTexture(settings);
 
     this->_window.draw(backgroundsettings);
 }
-
 
 // Display - Title Image
 
