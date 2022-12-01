@@ -139,18 +139,26 @@
     <ClCompile Include="BattleScreen.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="capacity.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="mainCharacter.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="nature.cpp" />
+    <ClCompile Include="pokemon.cpp" />
+    <ClCompile Include="type.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimatedEntity.h" />
     <ClInclude Include="BattleScreen.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="capacity.h" />
     <ClInclude Include="mainCharacter.h" />
     <ClInclude Include="Map.h" />
     <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="nature.h" />
+    <ClInclude Include="talent.h" />
+    <ClInclude Include="type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
