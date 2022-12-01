@@ -157,7 +157,6 @@
     <ClInclude Include="Map.h" />
     <ClInclude Include="Pokemon.h" />
     <ClInclude Include="nature.h" />
-    <ClInclude Include="pokemon.h" />
     <ClInclude Include="talent.h" />
     <ClInclude Include="type.h" />
   </ItemGroup>
