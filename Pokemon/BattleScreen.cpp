@@ -172,11 +172,13 @@ BattleScreen::~BattleScreen() {
 
 
 
-void BattleScreen::StartNewBattle() {
+void BattleScreen::StartNewBattle(Pokemon* wild,Pokemon* Trainer) {
 	this->EnemyPokemon = NULL;
 	this->AllyPokemon = NULL;
 	this->BattlePhase = 1;
 	this->RunAttempt = 1;
+	this->AllyPokemon = Trainer;
+	this->EnemyPokemon = wild;
 }
 
 // Start Battle
@@ -309,7 +311,7 @@ void BattleScreen::ChooseBattleAction(bool click, const char* buttonName) {
 
 	sf::Text Level;
 	Level.setFont(this->font);
-	Level.setString("N." + to_string(10));
+	Level.setString("N." + to_string(this->AllyPokemon.));
 	Level.setCharacterSize(20);
 	Level.setFillColor(sf::Color::Black);
 	Level.setPosition((AllyPokemonInfo.getPosition().x+100), (AllyPokemonInfo.getPosition().y));

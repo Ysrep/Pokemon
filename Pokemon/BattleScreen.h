@@ -15,7 +15,7 @@ public:
 
 	void BattleAnimation(sf::Event event);
 
-	void StartNewBattle();
+	void StartNewBattle(Pokemon* wild,Pokemon* Trainer);
 
 	void ChooseBattleAction(bool click, const char* buttonName);
 

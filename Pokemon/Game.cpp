@@ -387,8 +387,8 @@ void::Game::GameBattleScreen() {
     }
 }
 
-void Game::WildPokemon() {
-    this->Battle.BattlePhase = 1;
+void Game::WildPokemon(Pokemon* wild, Pokemon* Trainer) {
+    this->Battle.StartNewBattle(wild, Trainer);
 }
 
 BattleScreen Game::getBattle()

@@ -48,7 +48,7 @@ public:
 
     //battle window
     void GameBattleScreen();
-    void WildPokemon();
+    void WildPokemon(Pokemon* wild,Pokemon* Trainer);
     BattleScreen getBattle();
 
     //getwindow

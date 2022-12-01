@@ -1,5 +1,5 @@
 #include "Game.h"
-
+#include "Pokemon.h"
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include <iostream>
@@ -115,7 +115,9 @@ int main() { // MAIN ULYSS
 			break;
 
 		case 4:
-			g.WildPokemon();
+			Pokemon wild;
+			Pokemon Trainer;
+			g.WildPokemon(&wild, &Trainer);
 			g.GameBattleScreen();
 			if (g.getBattle().BattlePhase == -1) {
 				e = 3;
