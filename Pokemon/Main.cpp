@@ -127,27 +127,7 @@
 //	return 0;
 //}
 
-int main() { //MAIN TITOUAN
-
-	sf::RenderWindow window(sf::VideoMode(640, 640), "Pokemon Salty");
-	mainCharacter mainCharMap(&window);
-	Map mapTile(&window);
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		window.clear();
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		mapTile.MappingTile();
-		mainCharMap.InitChar();
-		window.display();
-	}
-}
-		std::cout << "Error" << std::endl;
+std::cout << "Error" << std::endl;
 	}
 	sf::Sound whodispokemon;
 	whodispokemon.setBuffer(whodapokemon);
@@ -231,49 +211,70 @@ int main() { //MAIN TITOUAN
 			g.drawBackgroundSettings();
 			g.drawSettingsTitle();
 			g.audioManageText();
-		/*	if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f)
-			{
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+			/*	if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f)
 				{
-					g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
-					Mouettes.setVolume(0);
-					whodispokemon.setVolume(0);
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
+						Mouettes.setVolume(0);
+						whodispokemon.setVolume(0);
+					}
 				}
-			}
 
-			if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f && g.audioManage.setFillColor(0, 255, 0, 255)
-			{
-				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f && g.audioManage.setFillColor(0, 255, 0, 255)
 				{
-					g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
-					Mouettes.setVolume(0);
-					whodispokemon.setVolume(0);
-				}
-			}*/
-			Mouettes.play();
-			g.backToMainMenuText();
-			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			{
-				e = 1;
-				g.clear();
-			}
+					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+					{
+						g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
+						Mouettes.setVolume(0);
+						whodispokemon.setVolume(0);
+					}
+				}*/
+//			Mouettes.play();
+//			g.backToMainMenuText();
+//			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+//			{
+//				e = 1;
+//				g.clear();
+//			}
+//
+//
+//			g.display();
+//
+//			break;
+//
+//		case 4:
+//			g.WildPokemon();
+//			g.GameBattleScreen();
+//			if (g.getBattle().BattlePhase == -1) {
+//				e = 3;
+//			}
+//		}
+//
+//	}
+//
+//	return 0;
+//}
 
+int main() { //MAIN TITOUAN
 
-			g.display();
+	sf::RenderWindow window(sf::VideoMode(640, 640), "Pokemon Salty");
+	mainCharacter mainCharMap(&window);
+	Map mapTile(&window);
 
-			break;
-
-		case 4:
-			g.WildPokemon();
-			g.GameBattleScreen();
-			if (g.getBattle().BattlePhase == -1) {
-				e = 3;
-			}
+	while (window.isOpen())
+	{
+		sf::Event event;
+		window.clear();
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
 		}
-		
+		mapTile.MappingTile();
+		mainCharMap.InitChar();
+		window.display();
 	}
-
-	return 0;
 }
 
 //int main() { //MAIN TITOUAN
