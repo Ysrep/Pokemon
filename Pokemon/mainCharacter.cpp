@@ -20,8 +20,6 @@
 mainCharacter::mainCharacter(sf::RenderWindow* window) {
 	this->window = window;
     this->charDirection = 0;
-    int charPosX = 0;
-    int charPosY = 0;
     this->mainCharSprite;
     this->mainCharSprite.setPosition(sf::Vector2f(window->getSize().x / 2, window->getSize().y / 2));
 }
@@ -41,20 +39,14 @@ void mainCharacter::InitChar() {
 	mainCharSprite.setTextureRect(mainChar_anim_left[count]);
     mainCharSprite.setOrigin((double)mainCharSprite.getTextureRect().width / 2, (double)mainCharSprite.getTextureRect().height / 2);
 
-    while (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 
         if (count % 1250 == 0) {
 
             anim_count++;
-            charPosX - 4;
-            mainCharSprite.setPosition(mainCharSprite.getPosition().x - 4, mainCharSprite.getPosition().y);
-            while (charPosX % 64 != 0) {
-                mainCharSprite.setPosition(mainCharSprite.getPosition().x - 4, mainCharSprite.getPosition().y);
-            }
 
             if (anim_count >= mainChar_anim_left.size()) {
-                break;
-
+                return;
             }
             mainCharSprite.setTextureRect(mainChar_anim_left[anim_count]);
             count = 0;
@@ -67,20 +59,14 @@ void mainCharacter::InitChar() {
         this->window->display();
     }
 
-    while (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
 
         if (count % 2500 == 0) {
 
             anim_count++;
-            charPosY - 8;
-            mainCharSprite.setPosition(mainCharSprite.getPosition().x, mainCharSprite.getPosition().y + 8);
-            while (charPosY % 64 != 0) {
-                mainCharSprite.setPosition(mainCharSprite.getPosition().x, mainCharSprite.getPosition().y + 8);
-            }
 
             if (anim_count >= mainChar_anim_left.size()) {
-                break;
-
+                return;
             }
             mainCharSprite.setTextureRect(mainChar_anim_down[anim_count]);
             count = 0;
@@ -88,24 +74,18 @@ void mainCharacter::InitChar() {
 
         charDirection = 0;
         count++;
-
         this->window->draw(mainCharSprite);
         this->window->display();
     }
 
-    while (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 
         if (count % 2500 == 0) {
 
             anim_count++;
-            mainCharSprite.setPosition(mainCharSprite.getPosition().x + 8, mainCharSprite.getPosition().y);
-            while (charPosX % 64 != 0) {
-                mainCharSprite.setPosition(mainCharSprite.getPosition().x + 8, mainCharSprite.getPosition().y);
-            }
 
             if (anim_count >= mainChar_anim_left.size()) {
-                break;
-
+                return;
             }
             mainCharSprite.setTextureRect(mainChar_anim_right[anim_count]);
             count = 0;
@@ -118,19 +98,15 @@ void mainCharacter::InitChar() {
         this->window->display();
     }
 
-    while (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 
         
         if (count % 2500 == 0) {
+
             anim_count++;
-            mainCharSprite.setPosition(mainCharSprite.getPosition().x, mainCharSprite.getPosition().y - 8);
-            while (charPosY % 64 != 0) {
-                mainCharSprite.setPosition(mainCharSprite.getPosition().x, mainCharSprite.getPosition().y - 8);
-            }
 
             if (anim_count >= mainChar_anim_left.size()) {
-                break;
-
+                return;
             }
             mainCharSprite.setTextureRect(mainChar_anim_up[anim_count]);
             count = 0;
@@ -138,6 +114,8 @@ void mainCharacter::InitChar() {
 
         charDirection = 2;
         count++;
+
+        this->window->clear();
 
         this->window->draw(mainCharSprite);
         this->window->display();

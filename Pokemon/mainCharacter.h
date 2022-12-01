@@ -11,6 +11,4 @@ public :
 	sf::Sprite mainCharSprite;
 
 	int charDirection;
-	int charPosX;
-	int charPosY;
 };
