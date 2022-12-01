@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <iostream>
+#include "BattleScreen.h"
 #include "SFML/Audio.hpp"
 
 Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
@@ -14,6 +15,9 @@ Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
     this->_window.getSize();
     opacity = 0;
     this->GoeliseTravel = true;
+    this->Battle;
+    BattleScreen Battle(&this->_window, 0);
+    this->Battle = Battle;
 }
 
 
@@ -343,4 +347,51 @@ void Game::goeliseTravel2() {
         this->movingWingull2.setPosition(sf::Vector2f(1000.f, 420.f));
         this->GoeliseTravel = true;
     }
+}
+
+// Battle Screen
+
+void::Game::GameBattleScreen() {
+    sf::Event event;
+    while (this->Battle.BattlePhase > -1) {
+        while (this->_window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                this->_window.close();
+                this->Battle.BattlePhase = -1;
+            }
+        }
+        this->Battle.ShowBattleScreen(false, "Nothing", event);
+        if (this->Battle.BattlePhase == 2 || this->Battle.BattlePhase == 3) {
+            this->Battle.ShowBattleScreen(false, "noting", event);
+            if ((this->_window.hasFocus() && sf::Mouse::getPosition(this->_window).x > 0 || sf::Mouse::getPosition(this->_window).x < 800) && (sf::Mouse::getPosition(this->_window).y > 0 || sf::Mouse::getPosition(this->_window).y < 800) && sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            {
+                if (sf::Mouse::getPosition(this->_window).x >= this->Battle.CircleButton["BottomLeft"].getPosition().x && sf::Mouse::getPosition(this->_window).x <= this->Battle.CircleButton["BottomLeft"].getPosition().x + (this->Battle.CircleButton["BottomLeft"].getRadius() / 2) + this->Battle.Button["BottomLeft"].getSize().x && sf::Mouse::getPosition(this->_window).y >= this->Battle.Button["BottomLeft"].getPosition().y && sf::Mouse::getPosition(this->_window).y <= this->Battle.Button["BottomLeft"].getPosition().y + this->Battle.Button["BottomLeft"].getSize().y) {
+                    this->Battle.ShowBattleScreen(true, "BottomLeft", event);
+                }
+                else if (sf::Mouse::getPosition(this->_window).x >= this->Battle.Button["BottomRight"].getPosition().x && sf::Mouse::getPosition(this->_window).x <= this->Battle.CircleButton["BottomRight"].getPosition().x + (this->Battle.CircleButton["BottomRight"].getRadius() / 2) + this->Battle.Button["BottomRight"].getSize().x && sf::Mouse::getPosition(this->_window).y >= this->Battle.Button["BottomRight"].getPosition().y && sf::Mouse::getPosition(this->_window).y <= this->Battle.Button["BottomRight"].getPosition().y + this->Battle.Button["BottomRight"].getSize().y) {
+                    this->Battle.ShowBattleScreen(true, "BottomRight", event);
+                }
+                else if (sf::Mouse::getPosition(this->_window).x >= this->Battle.CircleButton["TopLeft"].getPosition().x && sf::Mouse::getPosition(this->_window).x <= this->Battle.CircleButton["TopLeft"].getPosition().x + (this->Battle.CircleButton["TopLeft"].getRadius() / 2) + this->Battle.Button["TopLeft"].getSize().x && sf::Mouse::getPosition(this->_window).y >= this->Battle.Button["TopLeft"].getPosition().y && sf::Mouse::getPosition(this->_window).y <= this->Battle.Button["TopLeft"].getPosition().y + this->Battle.Button["TopLeft"].getSize().y) {
+                    this->Battle.ShowBattleScreen(true, "TopLeft", event);
+                }
+                else if (sf::Mouse::getPosition(this->_window).x >= this->Battle.Button["TopRight"].getPosition().x && sf::Mouse::getPosition(this->_window).x <= this->Battle.CircleButton["TopRight"].getPosition().x + (this->Battle.CircleButton["TopRight"].getRadius() / 2) + this->Battle.Button["TopRight"].getSize().x && sf::Mouse::getPosition(this->_window).y >= this->Battle.Button["TopRight"].getPosition().y && sf::Mouse::getPosition(this->_window).y <= this->Battle.Button["TopRight"].getPosition().y + this->Battle.Button["TopRight"].getSize().y) {
+                    this->Battle.ShowBattleScreen(true, "TopRight", event);
+                }
+                else {
+                    this->Battle.ShowBattleScreen(false, "noting", event);
+                }
+            }
+        }
+    }
+}
+
+void Game::WildPokemon() {
+    this->Battle.BattlePhase = 1;
+}
+
+BattleScreen Game::getBattle()
+{
+    return this->Battle;
 }

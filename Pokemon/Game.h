@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Audio.hpp>
 #include "Entity.h"
+#include "BattleScreen.h"
 
 class Game
 {
@@ -9,6 +10,7 @@ private:
     sf::RenderWindow _window;
     
     float opacity;
+    BattleScreen Battle;
 
 public:
     bool GoeliseTravel;
@@ -36,12 +38,18 @@ public:
     //MainMenu display
     void drawBackground();
     void drawBackgroundSettings();
+    
     void drawEnterText();
 
     //BigMainMenu display
     void displayPlayButton();
     void displaySettingsButton();
     void displayQuitButton();
+
+    //battle window
+    void GameBattleScreen();
+    void WildPokemon();
+    BattleScreen getBattle();
 
     //getwindow
     sf::RenderWindow& GetWindow();
