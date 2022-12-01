@@ -21,6 +21,8 @@ public:
     sf::Sprite background;
     sf::Texture arena;
 
+    sf::Text audioManage;
+
     Game(void);
 
     //Global display
@@ -37,14 +39,18 @@ public:
 
     //MainMenu display
     void drawBackground();
-    void drawBackgroundSettings();
-    
     void drawEnterText();
 
     //BigMainMenu display
     void displayPlayButton();
     void displaySettingsButton();
     void displayQuitButton();
+
+    //Settings Display
+    void drawBackgroundSettings();
+    void drawSettingsTitle();
+    void backToMainMenuText();
+    void audioManageText();
 
     //battle window
     void GameBattleScreen();

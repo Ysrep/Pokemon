@@ -53,7 +53,7 @@ int main() { // MAIN ULYSS
 			g.drawBackground();
 			g.drawPokeball();
 			g.drawTitle();
-			g.drawEnterText(/*deltatime*/);
+			g.drawEnterText();
 			g.display();
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 			{
@@ -84,9 +84,7 @@ int main() { // MAIN ULYSS
 			position2 = g.movingWingull2.getPosition();
 			std::cout << position2.x << " : " << position2.y << std::endl;
 
-
 			g.displayPlayButton();
-
 
 			g.displaySettingsButton();
 			if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
@@ -108,6 +106,34 @@ int main() { // MAIN ULYSS
 			g.clear();
 			g.handleEvents();
 			g.drawBackgroundSettings();
+			g.drawSettingsTitle();
+			g.audioManageText();
+		/*	if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f)
+			{
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
+					Mouettes.setVolume(0);
+					whodispokemon.setVolume(0);
+				}
+			}
+
+			if (sf::Mouse::getPosition(g.GetWindow()).x > 305.f && sf::Mouse::getPosition(g.GetWindow()).x < 640.f && sf::Mouse::getPosition(g.GetWindow()).y > 285.f && sf::Mouse::getPosition(g.GetWindow()).y < 255.f && g.audioManage.setFillColor(0, 255, 0, 255)
+			{
+				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+				{
+					g.audioManage.setFillColor(sf::Color(0, 255, 0, 255));
+					Mouettes.setVolume(0);
+					whodispokemon.setVolume(0);
+				}
+			}*/
+			Mouettes.play();
+			g.backToMainMenuText();
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+			{
+				e = 1;
+				g.clear();
+			}
 
 
 			g.display();

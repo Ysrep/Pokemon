@@ -3,6 +3,14 @@
 #include "BattleScreen.h"
 #include "SFML/Audio.hpp"
 
+
+//std::vector<sf::IntRect> mainChar_anim_left = MAIN_CHAR_ANIM_RECT_LEFT;
+//
+//
+//
+//
+//mainCharSprite.setTextureRect(mainChar_anim_left[count]);
+
 Game::Game() : _window(sf::VideoMode(1000, 650), "Pokemon Salty")
 {
     this->movingWingull;
@@ -47,15 +55,6 @@ void Game::handleEvents(void)
             << sf::Mouse::getPosition(_window).x << ", "
             << sf::Mouse::getPosition(_window).y << "\n";
         break;
-
-    case sf::Event::Resized:
-    {
-        std::cout << "-------------------------------------------------------------------------------------------------------" << std::endl;
-        std::cout << "new width: " << event.size.width << std::endl;
-        std::cout << "new height: " << event.size.height << std::endl;
-        this->_window.setSize(sf::Vector2u(event.size.width, event.size.height));
-    }
-
     default:
         break;
     }
@@ -73,6 +72,13 @@ void Game::display(void)
 {
     this->_window.display();
 }
+
+
+//_________________________________________________________________________________________________
+
+//________________________________________1ST PAGE DISPLAY_________________________________________
+
+//_________________________________________________________________________________________________
 
 //Display - Background
 
@@ -93,25 +99,6 @@ void Game::drawBackground()
     background.setOrigin(sf::Vector2f((double)background.getTextureRect().width / 2, (double)background.getTextureRect().height / 2));
     background.setPosition(sf::Vector2f((double)this->_window.getSize().x / 2, (double)this->_window.getSize().y / 2));
     this->_window.draw(background);
-}
-
-//Display Settings BG
-
-void Game::drawBackgroundSettings()
-{
-    sf::Texture settings;
-    settings.setSmooth(true);
-    sf::Sprite backgroundsettings;
-
-    backgroundsettings.setScale(sf::Vector2f(1.2f, 1.f));
-    if (!settings.loadFromFile("Textures/Mainmenu/Settings.jpg"))
-    {
-
-    }
-
-    backgroundsettings.setTexture(settings);
-
-    this->_window.draw(backgroundsettings);
 }
 
 // Display - Title Image
@@ -169,11 +156,11 @@ void Game::drawEnterText() {
     }
     sf::Text MainmenuText;
     MainmenuText.setFont(font);
-    MainmenuText.setString("Press enter");
+    MainmenuText.setString("PRESS ENTER TO PLAY");
     MainmenuText.setCharacterSize(50);
     MainmenuText.setFillColor(sf::Color(0,0,0,opacity));
     MainmenuText.setOrigin((double)MainmenuText.getLocalBounds().width / 2, (double)MainmenuText.getLocalBounds().height / 2);
-    MainmenuText.setPosition(sf::Vector2f(530.f, 400.f));// absolute position
+    MainmenuText.setPosition(sf::Vector2f(530.f, 530.f));// absolute position
 
    clock.restart();
 
@@ -182,16 +169,19 @@ void Game::drawEnterText() {
     this->_window.draw(MainmenuText);
 }
 
+//_________________________________________________________________________________________________
+
+//________________________________________MAIN MENU DISPLAY________________________________________
+
+//_________________________________________________________________________________________________
+
+
 // Display - Play Button
 
 void Game::displayPlayButton() {
 
-    if (opacity >= 255)
-    {
-        opacity = 255;
-    }
+
     sf::Font font;
-    sf::Clock clock;
     if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
     {
     }
@@ -199,19 +189,16 @@ void Game::displayPlayButton() {
     Play.setFont(font);
     Play.setString("PLAY");
     Play.setCharacterSize(50);
-    Play.setFillColor(sf::Color(0, 0, 0, opacity));
+    Play.setFillColor(sf::Color(0, 0, 0, 255));
     Play.setOrigin((double)Play.getLocalBounds().width / 2, (double)Play.getLocalBounds().height / 2);
     Play.setPosition(sf::Vector2f(250.f, 400.f));// absolute position
-
-    clock.restart();
-
-    opacity += 6.0f /* * deltatime */;
 
 
     if (sf::Mouse::getPosition(_window).x > 200.f && sf::Mouse::getPosition(_window).x < 300.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
     {
         Play.setFillColor(sf::Color(255, 0, 0, 255));
     }
+
 
     this->_window.draw(Play);
 }
@@ -220,10 +207,6 @@ void Game::displayPlayButton() {
 
 void Game::displaySettingsButton() {
 
-    if (opacity >= 255)
-    {
-        opacity = 255;
-    }
     sf::Font font;
     if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
     {
@@ -232,13 +215,9 @@ void Game::displaySettingsButton() {
     Settings.setFont(font);
     Settings.setString("Settings");
     Settings.setCharacterSize(50);
-    Settings.setFillColor(sf::Color(0, 0, 0, opacity));
+    Settings.setFillColor(sf::Color(0, 0, 0, 255));
     Settings.setOrigin((double)Settings.getLocalBounds().width / 2, (double)Settings.getLocalBounds().height / 2);
     Settings.setPosition(sf::Vector2f(500.f, 400.f));// absolute position
-
-    opacity += 6.0f /* * deltatime */;
-
-   
 
     if (sf::Mouse::getPosition(_window).x > 400.f && sf::Mouse::getPosition(_window).x < 600.f && sf::Mouse::getPosition(_window).y > 400.f && sf::Mouse::getPosition(_window).y < 450.f)
     {
@@ -252,12 +231,8 @@ void Game::displaySettingsButton() {
 
 void Game::displayQuitButton() {
 
-    if (opacity >= 255)
-    {
-        opacity = 255;
-    }
+
     sf::Font font;
-    sf::Clock clock;
     if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
     {
     }
@@ -265,13 +240,9 @@ void Game::displayQuitButton() {
     Quit.setFont(font);
     Quit.setString("Quit");
     Quit.setCharacterSize(50);
-    Quit.setFillColor(sf::Color(0, 0, 0, opacity));
+    Quit.setFillColor(sf::Color(0, 0, 0, 255));
     Quit.setOrigin((double)Quit.getLocalBounds().width / 2, (double)Quit.getLocalBounds().height / 2);
     Quit.setPosition(sf::Vector2f(750.f, 400.f));// absolute position
-
-    clock.restart();
-
-    opacity += 6.0f /* * deltatime */;
 
    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
@@ -289,6 +260,7 @@ void Game::displayQuitButton() {
     this->_window.draw(Quit);
 }
 
+// 3rd plan Wingull travel + motion
 
 void Game::goeliseTravel() {
     std::cout << this->GoeliseTravel << std::endl;
@@ -320,8 +292,9 @@ void Game::goeliseTravel() {
     }
 }
 
+ // 1st plan Wingull Travel + motion
+
 void Game::goeliseTravel2() {
-    std::cout << this->GoeliseTravel << std::endl;
 
     sf::Texture wingull2;
     wingull2.setSmooth(true);
@@ -348,6 +321,104 @@ void Game::goeliseTravel2() {
         this->GoeliseTravel = true;
     }
 }
+//________________________________________________________________________________________________
+
+//________________________________________SETTINGS DISPLAY________________________________________
+
+//________________________________________________________________________________________________
+
+//Display Settings BG
+
+void Game::drawBackgroundSettings()
+{
+    sf::Texture settings;
+    settings.setSmooth(true);
+    sf::Sprite backgroundsettings;
+
+    backgroundsettings.setScale(sf::Vector2f(1.2f, 1.f));
+    if (!settings.loadFromFile("Textures/Mainmenu/Settings.jpg"))
+    {
+
+    }
+
+    backgroundsettings.setTexture(settings);
+
+    this->_window.draw(backgroundsettings);
+}
+
+// Display Settings Title
+
+void Game::drawSettingsTitle() {
+
+    if (opacity >= 255)
+    {
+        opacity = 255;
+    }
+    sf::Font font;
+    if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
+    {
+    }
+    sf::Text settingsText;
+    settingsText.setFont(font);
+    settingsText.setString("Settings");
+    settingsText.setCharacterSize(150);
+    settingsText.setFillColor(sf::Color(0, 0, 0, 255));
+    settingsText.setOrigin((double)settingsText.getLocalBounds().width / 2, (double)settingsText.getLocalBounds().height / 2);
+    settingsText.setPosition(sf::Vector2f(500.f, 50.f));// absolute position
+
+    opacity += 6.0f /* * deltatime */;
+
+    this->_window.draw(settingsText);
+}
+
+//Back to main menu Text
+
+void Game::backToMainMenuText() {
+
+    sf::Font font;
+    if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
+    {
+    }
+    sf::Text MainmenuText;
+    MainmenuText.setFont(font);
+    MainmenuText.setString("Press escape to go back to main menu");
+    MainmenuText.setCharacterSize(50);
+    MainmenuText.setFillColor(sf::Color(0, 0, 0, 255));
+    MainmenuText.setOrigin((double)MainmenuText.getLocalBounds().width / 2, (double)MainmenuText.getLocalBounds().height / 2);
+    MainmenuText.setPosition(sf::Vector2f(500.f, 570.f));// absolute position
+
+    this->_window.draw(MainmenuText);
+}
+
+// Display Audio Text
+
+void Game::audioManageText() {
+
+    sf::Font font;
+    if (!font.loadFromFile("Fonts/Unown/Unown.ttf"))
+    {
+    }
+    this->audioManage.setFont(font);
+    this->audioManage.setString("Audio sounds");
+    this->audioManage.setCharacterSize(50);
+    this->audioManage.setFillColor(sf::Color(0, 0, 0, 255));
+    this->audioManage.setOrigin((double)this->audioManage.getLocalBounds().width / 2, (double)this->audioManage.getLocalBounds().height / 2);
+    this->audioManage.setPosition(sf::Vector2f(470.f, 250.f));// absolute position
+
+
+
+    this->_window.draw(this->audioManage);
+}
+
+// Display Audio Checkbox
+
+
+
+//________________________________________________________________________________________________
+
+//________________________________________BATTLE DISPLAY________________________________________
+
+//________________________________________________________________________________________________
 
 // Battle Screen
 
