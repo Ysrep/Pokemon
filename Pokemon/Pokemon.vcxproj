@@ -135,12 +135,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="capacity.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="mainCharacter.cpp" />
+    <ClCompile Include="nature.cpp" />
+    <ClCompile Include="pokemon.cpp" />
+    <ClCompile Include="type.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="capacity.h" />
     <ClInclude Include="mainCharacter.h" />
-    <ClInclude Include="Pokemon.h" />
+    <ClInclude Include="nature.h" />
+    <ClInclude Include="pokemon.h" />
+    <ClInclude Include="talent.h" />
+    <ClInclude Include="type.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
