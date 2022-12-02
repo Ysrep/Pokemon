@@ -667,19 +667,19 @@ void BattleScreen::ChooseAttack(bool click, const char* buttonName) {
 
 	if (click == true && buttonName == "TopLeft") {
 		this->BattlePhase = 4;
-		this->capacityUsed = this->AllyPokemonCapacity[1];
+		this->capacityUsed = this->AllyPokemonCapacity[0];
 	}
 	else if (click == true && buttonName == "BottomRight") {
 		this->BattlePhase = 4;
-		this->capacityUsed = this->AllyPokemonCapacity[3];
+		this->capacityUsed = this->AllyPokemonCapacity[2];
 	}
 	else if (click == true && buttonName == "TopRight") {
 		this->BattlePhase = 4;
-		this->capacityUsed = this->AllyPokemonCapacity[2];
+		this->capacityUsed = this->AllyPokemonCapacity[1];
 	}
 	else if (click == true && buttonName == "BottomLeft") {
 		this->BattlePhase = 4;
-		this->capacityUsed = this->AllyPokemonCapacity[4];
+		this->capacityUsed = this->AllyPokemonCapacity[3];
 	}
 }
 
@@ -760,7 +760,7 @@ void BattleScreen::DommageStep() {
 	if (this->AllyPokemonActualHealth <= 0) {
 		sf::Text text;
 		text.setFont(this->font);
-		text.setString("Your " + this->AllyPokemonName + " is fainted");
+		text.setString("Your " + this->AllyPokemonName + " fainted");
 		text.setCharacterSize(50);
 		text.setFillColor(sf::Color::Black);
 		text.setOrigin((double)text.getLocalBounds().width / 2, (double)text.getLocalBounds().height / 2);
@@ -776,7 +776,7 @@ void BattleScreen::DommageStep() {
 	else if (this->EnemyPokemonActualHealth <= 0) {
 		sf::Text text;
 		text.setFont(this->font);
-		text.setString("The wild " + this->AllyPokemonName + " is fainted");
+		text.setString("The wild " + this->EnemyPokemonName + " fainted");
 		text.setCharacterSize(50);
 		text.setFillColor(sf::Color::Black);
 		text.setOrigin((double)text.getLocalBounds().width / 2, (double)text.getLocalBounds().height / 2);
