@@ -1,8 +1,8 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
 #include "capacity.h"
-//#include "talent.h"
 #include "nature.h"
 #include "type.h"
 #include <SFML/Graphics.hpp>
@@ -11,6 +11,13 @@ using namespace std;
 
 class Pokemon {
 private :
+	
+
+public :
+	Pokemon();
+	void initPokemon();
+
+	sf::Sprite PokeSprite;
 	string name = "Rattata";
 	int lvl = 50;
 	int hp = 105;
@@ -25,8 +32,4 @@ private :
 	Nature nature;
 	//Talent talent;
 	vector<Capacity> capacity;
-
-public :
-	Pokemon();
-	void initPokemon();
 };

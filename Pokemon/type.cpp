@@ -5,5 +5,9 @@
 using namespace std;
 
 Type::Type(string n) {
-	name = n;
+	this->name = n;
+}
+
+Type::Type()
+{
 }

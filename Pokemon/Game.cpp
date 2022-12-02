@@ -433,6 +433,7 @@ void::Game::GameBattleScreen() {
                 this->Battle.BattlePhase = -1;
             }
         }
+        sf::sleep(sf::seconds(0.06));
         this->Battle.ShowBattleScreen(false, "Nothing", event);
         if (this->Battle.BattlePhase == 2 || this->Battle.BattlePhase == 3) {
             this->Battle.ShowBattleScreen(false, "noting", event);

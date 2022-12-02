@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 
@@ -9,6 +10,6 @@ private:
 	string effect;
 
 public:
-	Nature();
 	Nature(string na, string e);
+	Nature();
 };

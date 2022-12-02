@@ -4,7 +4,12 @@
 
 using namespace std;
 
+
 Nature::Nature(string na, string e) {
 	name = na;
 	effect = e;
+}
+
+Nature::Nature()
+{
 }

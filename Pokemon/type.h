@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,6 +11,6 @@ private :
 	vector<Type> faiblesse;
 
 public :
-	Type();
 	Type(string n);
+	Type();
 };

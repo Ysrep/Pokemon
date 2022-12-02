@@ -19,7 +19,7 @@ public:
 
 	void ChooseBattleAction(bool click, const char* buttonName);
 
-	void ChooseAttack();
+	void ChooseAttack(bool click, const char* buttonName);
 
 	void DommageStep();
 
@@ -37,6 +37,16 @@ public:
 	std::unordered_map<const char*, sf::CircleShape> CircleButton;
 protected:
 
+	sf::Sprite AllyPokemonSprite;
+	sf::Sprite EnemyPokemonSprite;
+	sf::Texture PokemonTexture;
+	sf::Font FontNumber;
+	Capacity capacityUsed;
+	int EnemyPokemonCapacityUsed;
+	vector<Capacity> AllyPokemonCapacity;
+	vector<Capacity> EnemyPokemonCapacity;
+	int AllyPokemonActualHealth;
+	int EnemyPokemonActualHealth;
 	int RunAttempt;
 	sf::RectangleShape RectangleText;
 	sf::Font font;
@@ -45,6 +55,8 @@ protected:
 	sf::RenderWindow* window;
 	Pokemon* EnemyPokemon;
 	Pokemon* AllyPokemon;
+	string AllyPokemonName;
+	string EnemyPokemonName;
 	int BattleGround;
 
 };
